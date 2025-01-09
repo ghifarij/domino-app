@@ -16,7 +16,15 @@ export function FlipDominoes(dominoes: number[][]): number[][] {
 }
 
 export function RemoveDuplicate(dominoes: number[][]): number[][] {
-  return [...dominoes].filter((domino) => domino[0] !== domino[1]);
+  const seen = new Set<number>();
+  return dominoes.filter((domino) => {
+    const total = domino[0] + domino[1];
+    if (seen.has(total)) {
+      return false;
+    }
+    seen.add(total);
+    return true;
+  });
 }
 
 export function RemoveTotal(dominoes: number[][], total: number): number[][] {
